@@ -2,16 +2,19 @@
 # 데이터 워크플로우
 
 ## \# 목차
-1. [크플로우와-파이프라인](#워크플로우와-파이프라인)
-    1. [파이프라인-도구-소개](#파이프라인-도구-소개)
-    2. [워크플로우-도구](#워크플로우-도구-소개)
-2. [파이프라인-및-워크플로우-도구-비교](#파이프라인-및-워크플로우-도구-비교-argo-apache-airflow-apache-flink)
-    1. [Apache-argo](#argo)
+1. [파이프라인 & 워크플로우](#파이프라인--워크플로우)
+    1. [파이프라인 도구](#파이프라인-도구-소개)
+    2. [워크플로우 도구](#워크플로우-도구-소개)
+2. [파이프라인 워크플로우 도구 비교](#파이프라인-및-워크플로우-도구-비교-argo-apache-airflow-apache-flink)
+    1. [Argo](#argo)
     2. [Apache-AirFlow](#apache-airflow)
     3. [Apache-Flink](#apache-flink)
+3. [argo, apache airflow, apache flink 구성하기](#argo-apache-airflow-apache-flink-구성하기)
+    1. [Argo](#argo-1)
+    2. [Apache AirFlow](#apache-airflow-1)
+    2. [Apache Flink](#apache-flink-1)
 
-
-## \# 워크플로우와 파이프라인
+## \# 파이프라인 & 워크플로우
 "워크플로우"와 "파이프라인"은 종종 상호 교환이 되어 사용되지만, 세부적인 차이점이 있습니다. 그들이 가리키는 개념은 서로 비슷하지만, 주로 사용되는 문맥이나 의미하는 바에 약간의 차이가 있습니다.
 
 - **워크플로우(Workflow)**:
@@ -197,4 +200,11 @@
 
 #### 차이점
 - Flink는 대용량 실시간 데이터 처리에 특화되어 있습니다.
+
+## Argo, Apache Airflow, Apache Flink 구성하기
+### Argo
+
+### Apache Flink
+
+### Apache Airflow
 
