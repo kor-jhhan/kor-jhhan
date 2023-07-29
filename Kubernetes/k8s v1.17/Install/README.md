@@ -19,7 +19,7 @@
     - 192.168.210.233 k8s-master03 
     - 192.168.210.234 k8s-worker01 
     - 192.168.210.235 k8s-worker02 
-    
+
 </details>
 
 ## 설치 순서
@@ -314,6 +314,7 @@ $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 3. Master Server Join
+
 마스터로 조인할 Node에 접근하여 "kubeadm" 명령어로 클러스터에 조인한다.
 ```bash
 $ kubeadm join 192.168.210.230:6443 \
@@ -349,6 +350,7 @@ $ kubeadm init phase upload-certs --upload-certs --config ./kubeadm-config.yaml
 </details>
 
 4. Worker Server Join
+
 워커로 조인할 Node에 접근하여 "kubeadm" 명령어로 클러스터에 조인한다.<br>
 워커의 경우 "--control-plane" 속성값이 없다.
 
