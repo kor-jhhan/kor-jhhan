@@ -40,7 +40,7 @@
 
 </details>
 
-1. Docker apt repository 추가
+**1. Docker apt repository 추가**
 ```bash
 $ sudo apt update
 $ sudo apt-get update
@@ -60,7 +60,7 @@ $ sudo add-apt-repository \
   stable"
 ```
 
-2. Docker 설치
+**2. Docker 설치**
 
 ```bash
 ## 버전 지정 설치
@@ -72,7 +72,7 @@ $ systemctl enable docker
 $ systemctl start docker
 ```
 
-3. 개인 Docker registry 구성
+**3. 개인 Docker registry 구성**
 ```bash
 ## 폐쇄 환경에서 구성한다고 하면, 외부에서 docker save를 통하여 "registry" 이미지를 미리 준비해야한다.
 ## 준비된 이미지는 docker load 하면 된다.
@@ -84,7 +84,7 @@ $ docker run -dit --name my-registry \
 registry:latest
 ```
 
-4. 개인 Docker registry 연결
+**4. 개인 Docker registry 연결**
 ```bash
 cat > /etc/docker/daemon.json
 # -----------
@@ -153,7 +153,7 @@ $ sudo systemctl status keepalived
 
 </details>
 
-1. 기본 구성 패키지 설치
+**1. 기본 구성 패키지 설치**
 ```bash
 ## 기본 구성을 위한 패키지 설치
 $ sudo apt-get install -y libgpgme11-dev \
@@ -187,7 +187,7 @@ net.bridge.bridge-nf-call-ip6tables = 1
 sudo sysctl --system
 ```
 
-2. CRIO Apt repository 추가 및 설치
+**2. CRIO Apt repository 추가 및 설치**
 ```bash
 # 환경변수 설정
 $ export CRIO_VERSION=1.17
@@ -248,7 +248,7 @@ systemctl restart crio
 
 </details>
 
-1. k8s 설치
+**1. k8s 설치**
 ```bash
 ### apt 저장소 등록 및 키등록
 $ sudo apt-get install -y apt-transport-https curl
@@ -274,7 +274,7 @@ KUBELET_EXTRA_ARGS=--cgroup-driver=systemd --container-runtime=remote --containe
 # -----------
 ```
 
-2. Main k8s Master01 서버 Init
+**2. Main k8s Master01 서버 Init**
 ```bash
 # init을 위한 컨프 파일 생성
 $ cat > kubeadm-config.yaml 
@@ -313,7 +313,7 @@ $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 ```
 
-3. Master Server Join
+**3. Master Server Join**
 
 마스터로 조인할 Node에 접근하여 "kubeadm" 명령어로 클러스터에 조인한다.
 ```bash
@@ -349,7 +349,7 @@ $ kubeadm init phase upload-certs --upload-certs --config ./kubeadm-config.yaml
 
 </details>
 
-4. Worker Server Join
+**4. Worker Server Join**
 
 워커로 조인할 Node에 접근하여 "kubeadm" 명령어로 클러스터에 조인한다.<br>
 워커의 경우 "--control-plane" 속성값이 없다.
