@@ -6,9 +6,9 @@ IT 현업에서 일하면서 경험하고 공부한 내용들을 정리하려고
 ## 1. 워크 플로우 및 파이프라인
 [:clown_face: DataWorkFlow](./DataWorkFlow.md)
 ## 2. Kubenetes 개념 및 설치
-[:clown_face: DataWorkFlow](./Kubernetes/README.md)
+[:clown_face: k8s 설치 및 이슈 / Tip](./Kubernetes/README.md)
 ## 3. Flink
-[:clown_face: DataWorkFlow](./Flink/README.md)
+[:clown_face: Flink 소개 및 구성](./Flink/README.md)
 
 
 
