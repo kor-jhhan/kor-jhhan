@@ -1,14 +1,22 @@
 # :hole:Engineering 자료실
 안녕하세요. :smiley: <br> 
 이 곳에 OpenSource와 관련된 정보를 업로드할 계획입니다. <br>
-IT 현업에서 일하면서 경험하고 공부한 내용들을 정리하려고 합니다.
+IT 현업에서 일하면서 경험하고 공부한 내용들을 정리하려고 합니다. <br>
+
+*(# 정리할 정보가 너무 많아서 우선 최근 기억나는 내용부터 정리합니다.)*
 
 ## 1. 워크 플로우 및 파이프라인
-[:clown_face: DataWorkFlow](./DataWorkFlow.md)
+[:clown_face: DataWorkFlow](./Etc/DataWorkFlow.md)
 ## 2. Kubenetes 개념 및 설치
 [:clown_face: k8s 설치 및 이슈 / Tip](./Kubernetes/README.md)
 ## 3. Flink
 [:clown_face: Flink 소개 및 구성](./Flink/README.md)
-
-
-
+## 4. kafka
+[:clown_face: Flink 소개 및 구성](./Kafka/README.md)
+## 5. Argo
+[:clown_face: Flink 소개 및 구성](./Argo/README.md)
+## 6. Docker (정리중..)
+## 7. Kuda (정리중..)
+## 8. Ozone (정리중..)
+## 9. AirFlow (정리중..)
+## 10. Hadoop (정리중..)
