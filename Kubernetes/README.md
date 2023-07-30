@@ -3,11 +3,13 @@
 Kubernetes(쿠버네티스 혹은 줄여서 k8s라고도 부릅니다)는 Google에서 개발하고 현재는 Cloud Native Computing Foundation(CNCF)에 의해 관리되는 오픈소스 컨테이너 오케스트레이션 플랫폼입니다.
 
 ## 목차
-- [쿠버네티스의 주요 기능](#쿠버네티스의-주요-기능)
-- [k8s_v1.17](#설치-및-cni-구성)
-- [CUDA 구성](#cuda-구성)
+- [쿠버네티스의 주요 기능](#contents1)
+- [k8s_v1.17](#contents2)
+- [CUDA 구성](#contents3)
 
-## 쿠버네티스의 주요 기능
+<div id="contents1"></div>
+
+## \# 쿠버네티스의 주요 기능
 ### 1. 서비스 발견 및 로드 밸런싱
 쿠버네티스는 DNS 이름을 사용하거나 자체 IP 주소를 사용하여 컨테이너를 찾을 수 있습니다. 필요에 따라 로드 밸런스를 수행할 수 있습니다.
 
@@ -28,8 +30,12 @@ Kubernetes(쿠버네티스 혹은 줄여서 k8s라고도 부릅니다)는 Google
 
 이러한 기능 덕분에 Kubernetes는 데브옵스(DevOps) 환경에서 마이크로서비스 아키텍처를 관리하고 배포하는 데 있어 사실상 표준이 되었습니다.
 
-## 설치 및 CNI 구성
+<div id="contents2"></div>
+
+## \# 설치 및 CNI 구성
 [설치 및 CNI 구성](./k8s%20v1.17/Install/README.md)
 
-## CUDA 구성
-[Cuda구성](./k8s%20v1.17/Issue%26Tip/%5BIssue%5D%20failed%20to%20mount%20container%20k8s%20POD%20calico-node%20diff.md)
+<div id="contents3"></div>
+
+## \# CUDA 구성
+[Cuda구성](./k8s%20v1.17/Issue%26Tip/)

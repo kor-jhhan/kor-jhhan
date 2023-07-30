@@ -23,13 +23,14 @@
 </details>
 
 ## 설치 순서
-- [Step1-Docker Image Registry 구성](#step1-docker-설치-및-docker-image-registry-구성)
-- [Step2-Keeopalived 설치](#step2-vip-사용을-위한-keepalived-설치)
-- [Step3-CRI-O 설치](#step3-docker-runtime-cri-o-설치)
-- [Step4-kubernetes-v1.17.6 설치](#step4-kubernetes-v1176-설치)
-- [Step5-Calico 설치](#step5-cni-설치)
-- [Step6-MetalLB 설치](#step6-metallb-설치-선택)
+- [Step1-Docker Image Registry 구성](#contents1)
+- [Step2-Keeopalived 설치](#contents2)
+- [Step3-CRI-O 설치](#contents3)
+- [Step4-kubernetes-v1.17.6 설치](#contents4)
+- [Step5-Calico 설치](#contents5)
+- [Step6-MetalLB 설치](#contents6)
 
+<div id="contents1"></div>
 
 ## [Step1] Docker 설치 및 Docker Image Registry 구성
 
@@ -97,6 +98,8 @@ cat > /etc/docker/daemon.json
 }
 ```
 
+<div id="contents2"></div>
+
 ## [Step2] VIP 사용을 위한 KeepAlived 설치
 
 <details>
@@ -139,6 +142,8 @@ $ sudo systemctl status keepalived
 ## 서비스 정지 및 시작으로 정상적으로 VIP가 넘어가는지 확인한다.
 ## ip addr 명령어로 설정한 network로 VIP 설정이 되는지 확인한다.
 ```
+
+<div id="contents3"></div>
 
 ## [Step3] Docker Runtime (CRI-O) 설치
 
@@ -234,6 +239,8 @@ plugin_dirs = [ "/usr/libexec/cni","/opt/cni/bin/"]
 # 재시작
 systemctl restart crio 
 ```
+
+<div id="contents4"></div>
 
 ## [Step4] kubernetes-v1.17.6 설치
 
@@ -361,6 +368,8 @@ $ kubeadm join 192.168.230.225:6443 \
 --cri-socket=/var/run/crio/crio.sock
 ```
 
+<div id="contents5"></div>
+
 ## [Step5] CNI 설치
 Calico는 컨테이너, VM 및 호스트 기반의 워크로드를 위한 오픈소스 네트워킹 및 네트워크 보안 솔루션입니다. 쿠버네티스 같은 클라우드 네이티브 환경에서는 네트워킹과 네트워크 정책 제어를 위해 주로 사용됩니다.
 ```bash
@@ -379,6 +388,8 @@ calico-node-vgvlx   1/1     Running   0          30d
 calico-node-wkdnj   1/1     Running   0          29d
 calico-node-xq8th   1/1     Running   0          29d
 ```
+
+<div id="contents6"></div>
 
 ## [Step6] MetalLB 설치 (선택)
 MetalLB는 쿠버네티스(Kubernetes) 환경에서 로드 밸런서 서비스 유형을 구현하기 위한 네트워크 로드 밸런서를 위해 설치

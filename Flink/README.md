@@ -1,17 +1,19 @@
 # Flink
 Apache Flink는 대용량 데이터 처리를 위한 오픈 소스 스트림 처리 프레임워크입니다. Flink는 높은 처리량과 낮은 지연 시간을 보장하면서 실시간 스트림 처리와 배치 처리 모두를 지원합니다.
 ## 목차
-- [주요 특징](#주요-특징)
-- [구성 정보](#구성-정보)
-- [구성 방법(k8s)](#구성-방법)
-- [Job 구성](#filnk-job-구조)
-    - [Source](#source-connectors)
-    - [transformation](#transformation)
-    - [Sink](#sink-connectors)
-- [Stream 처리방식](#stream-처리-방식)
-- [Job 개발](#flink-job-개발)
+- [주요 특징](#contents1)
+- [구성 정보](#contents2)
+- [구성 방법(k8s)](#contents3)
+- [Job 구성](#contents4)
+    - [Source](#contents4-1)
+    - [transformation](#contents4-2)
+    - [Sink](#contents4-3)
+- [Stream 처리방식](#contents5)
+- [Job 개발](#contents6)
 
 <br>
+
+<div id="contents1"></div>
 
 ## \# 주요 특징
 **1. 이벤트 시간 처리와 느슨한 이벤트 시간**
@@ -38,6 +40,8 @@ Flink는 이벤트 기반 애플리케이션, 실시간 분석, 데이터 파이
 
 <br>
 
+<div id="contents2"></div>
+
 ## \# 구성 정보
 Apache Flink은 큰 데이터 처리를 위한 오픈소스 스트림 처리 프레임워크입니다. 복잡한 데이터 파이프라인을 구성하고, 이벤트 시간 처리, 정확한 상태 관리 등을 수행할 수 있습니다. Apache Flink은 다음과 같이 구성됩니다.
 
@@ -60,6 +64,8 @@ Flink 클라이언트는 Job을 JobManager에 제출하는 역할을 합니다. 
 Flink UI는 사용자가 작업을 모니터링하고, 실행 중인 Job의 통계를 볼 수 있도록 합니다.
 
 <br>
+
+<div id="contents3"></div>
 
 ## \# 구성 방법
 ### [Step1] Flink 다운로드 및 압축 해제
@@ -100,7 +106,7 @@ $ docker push <DockerImageName>
 $ ./bin/kubernetes-session.sh -Dkubernetes.container.image=<DockerImageName>
 ```
 
----
+<div id="contents4"></div>
 
 ## \# Filnk Job 구조
 Apache Flink 작업(job)의 구조는 크게 다음의 3가지 주요 컴포넌트로 구성되어 있습니다.
@@ -114,6 +120,8 @@ Apache Flink 작업(job)의 구조는 크게 다음의 3가지 주요 컴포넌�
 이러한 구조를 통해 Apache Flink는 높은 수준의 유연성과 확장성을 제공합니다. 데이터 처리 파이프라인의 각 단계는 분리되어 있으며, 별도로 구성하고 조정할 수 있기 때문입니다. 이는 Apache Flink를 다양한 시나리오와 요구 사항에 적합하게 만듭니다.
 
 또한, Apache Flink는 고유의 분산 데이터 플로우 런타임을 기반으로 하며, 이를 통해 각 작업(job)이 병렬로 처리될 수 있게 해줍니다. 이는 대용량 데이터 스트림을 실시간으로 처리하는 데 필요한 높은 처리량과 낮은 지연 시간을 가능하게 합니다.
+
+<div id="contents4-1"></div>
 
 ### \@ Source Connectors
 Source Connectors는 다양한 데이터 스토리지 시스템에서 데이터를 읽어들입니다. Apache Flink에서 제공하는 Source Connectors는 다음과 같습니다:
@@ -130,6 +138,8 @@ Source Connectors는 다양한 데이터 스토리지 시스템에서 데이터�
 
  - NiFi: 실시간 데이터 플로우와 처리 시스템인 Apache NiFi에서 데이터를 읽어들입니다.
 
+<div id="contents4-2"></div>
+
 ### \@ Transformation 
 Apache Flink은 데이터 스트림을 처리하고 변환하기 위한 다양한 종류의 연산자들을 제공합니다. 이 연산자들을 이용하면 풍부한 변환 기능을 수행할 수 있습니다. 여기서는 Flink가 지원하는 주요 변환(Transformation)의 종류와 그 사용 방법에 대해 간략하게 설명하겠습니다.
 
@@ -144,6 +154,8 @@ Apache Flink은 데이터 스트림을 처리하고 변환하기 위한 다양�
  - Reduce: KeyBy로 그룹화된 스트림에 대해 reduce 연산을 수행합니다. 이 연산자는 그룹 내의 요소를 단일 요소로 줄입니다.
 
  - Window: KeyBy 후에 window 함수를 적용하여 그룹화된 스트림의 특정 시간 범위 또는 길이 범위에 대한 연산을 수행합니다.
+
+<div id="contents4-3"></div>
 
 ### \@ Sink Connectors
 Sink Connectors는 처리된 데이터를 다양한 데이터 스토리지 시스템에 쓰는 역할을 합니다. Apache Flink에서 제공하는 Sink Connectors는 다음과 같습니다:
@@ -163,6 +175,8 @@ Sink Connectors는 처리된 데이터를 다양한 데이터 스토리지 시�
  - NiFi: 실시간 데이터 플로우와 처리 시스템인 Apache NiFi에 데이터를 쓰는 역할을 합니다.
 
  - JDBC: JDBC를 통해 다양한 RDBMS에 데이터를 쓰는 역할을 합니다.
+
+<div id="contents5"></div>
 
 ## \# Stream 처리 방식
 ### **Event Time and Watermarks**
@@ -242,6 +256,8 @@ Flink은 Exactly-Once Semantics를 보장하여, 처리 중에 오류가 발생�
 env.enableCheckpointing(5000); // checkpoint every 5000 msecs
 env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE);
 ```
+
+<div id="contents6"></div>
 
 ## \# Flink Job 개발 
 실시간으로 파일을 읽어 Steam 처리 후 DBMS에 저장하는 구조 <br>
