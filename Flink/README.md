@@ -4,9 +4,12 @@ Apache Flink는 대용량 데이터 처리를 위한 오픈 소스 스트림 처
 - [주요 특징](#주요-특징)
 - [구성 정보](#구성-정보)
 - [구성 방법(k8s)](#구성-방법)
-- []
-- [](#source-connectors)
-- [](#sink-connectors)
+- [Job 구성](#filnk-job-구조)
+    - [Source](#source-connectors)
+    - [transformation](#transformation)
+    - [Sink](#sink-connectors)
+- [Stream 처리방식](#stream-처리-방식)
+- [Job 개발](#flink-job-개발)
 
 <br>
 
@@ -156,7 +159,7 @@ Sink Connectors는 처리된 데이터를 다양한 데이터 스토리지 시�
  - Elasticsearch: 실시간 분산 검색 및 분석 엔진인 Elasticsearch에 데이터를 쓰는 역할을 합니다.
 
  - RabbitMQ: 메시지 큐 서비스인 RabbitMQ에 데이터를 쓰는 역할을 합니다.
- 
+
  - NiFi: 실시간 데이터 플로우와 처리 시스템인 Apache NiFi에 데이터를 쓰는 역할을 합니다.
 
  - JDBC: JDBC를 통해 다양한 RDBMS에 데이터를 쓰는 역할을 합니다.
@@ -242,5 +245,5 @@ env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE);
 
 ## \# Flink Job 개발 
 실시간으로 파일을 읽어 Steam 처리 후 DBMS에 저장하는 구조 <br>
-[:clown_face: File to Kafka Producer](./flink-consumer/README.md) <br>
-[:clown_face: Kafka to Mysql Consumer](./flink-producer/README.md)
+[:clown_face: File to Kafka Producer](./flink-consumer/) <br>
+[:clown_face: Kafka to Mysql Consumer](./flink-producer/)
