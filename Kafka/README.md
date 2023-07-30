@@ -7,6 +7,7 @@ Kafka는 실시간 분석, 로깅, 이벤트 소싱, 메시징, 스트리밍 등
 - [구성요소](#contents2)
 - [토픽(Topic) 생성시 고려할 점](#contents3)
 - [브로커 수와 파티션 수](#contents4)
+- [kafka on k8s](#contents5)
 
 <div id="contents1"></div>
 
@@ -87,15 +88,15 @@ $ ./kafka-topics.sh --create --bootstrap-server localhost:9092 \
     ```bash
     $ kubectl create namesapce kafka
     ```
-1. **Zookeeper 설치** 
+2. **Zookeeper 설치** 
 
     [:clown_face: zookeeper 설치](./Install/zookeeper.yaml)
 
-2. **Kafka 설치** 
+3. **Kafka 설치** 
 
     [:clown_face: kafka 설치](./Install/kafka.yaml)
 
-3. **Topic 생성**
+4. **Topic 생성**
     ```bash
     # kubectl exec 명령어로 Container 접근 후
     $ ./kafka-topics.sh --create --bootstrap-server localhost:9092 \
