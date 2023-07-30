@@ -204,3 +204,166 @@ cuDNN 8.x 이전은  cat /usr/local/cuda/include/cudnn.h 파일에서 확인을 
 cuDNN 8.x 이후 버전에서는 위의 명령어로 설치 확인이 되지 않습니다.   
 cuDNN 8.x 이상 부터는 cudnn_version.h 파일에서 버전을 확인해야 합니다.   
 > cat /usr/local/cuda/include/cudnn_version.h | grep CUDNN_MAJOR -A 2   
+
+## 장치 정보 조회
+```bash
+# 장치 정보 조회
+yum install -y pciutils
+
+$ lspci -k |grep -i NVIDIA
+01:00.0 VGA compatible controller: NVIDIA Corporation GF119 [GeForce GT 610] (rev a1)
+	Subsystem: NVIDIA Corporation GF119 [GeForce GT 610]
+	Kernel modules: nvidiafb
+01:00.1 Audio device: NVIDIA Corporation GF119 HDMI Audio Controller (rev a1)
+	Subsystem: NVIDIA Corporation GF119 HDMI Audio Controller
+
+## 사용가능한 드라이버 버전 확인
+https://www.nvidia.com/Download/Find.aspx?lang=en-us
+
+## nouveau 비활성화
+$ cat > /etc/modprobe.d/blacklist-nvidia-nouveau.conf
+#----------------
+# write the following to the file:
+blacklist nouveau
+options nouveau modeset=0
+#----------------
+
+
+
+
+#### 우분투
+##### 참고 : https://hiseon.me/linux/ubuntu/install_nvidia_driver/
+## nouveau 모드 제거하려면 리빌드 후 reboot 해줘야함.
+$ update-initramfs -u
+$ shutdown -r now
+## 설치 가능 패키지 비교
+apt-cache search nvidia-driver |grep nvidia-driver
+#------------------
+nvidia-384 - Transitional package for nvidia-driver-390
+nvidia-384-dev - Transitional package for nvidia-driver-390
+nvidia-driver-390 - NVIDIA driver metapackage
+nvidia-driver-418 - Transitional package for nvidia-driver-430
+nvidia-driver-430 - Transitional package for nvidia-driver-440
+nvidia-driver-435 - Transitional package for nvidia-driver-455
+nvidia-driver-440 - Transitional package for nvidia-driver-450
+nvidia-driver-450 - NVIDIA driver metapackage
+nvidia-driver-455 - Transitional package for nvidia-driver-460
+nvidia-driver-460 - NVIDIA driver metapackage
+nvidia-driver-418-server - NVIDIA Server Driver metapackage
+nvidia-driver-440-server - NVIDIA Server Driver metapackage
+nvidia-driver-450-server - NVIDIA Server Driver metapackage
+#------------------
+
+## 설치
+apt-get -y install nvidia-driver-390
+modprobe nvidia
+
+## 설치 확인
+$ lspci -k |grep -i nvidia
+01:00.0 VGA compatible controller: NVIDIA Corporation GF119 [GeForce GT 610] (rev a1)
+	Subsystem: NVIDIA Corporation GF119 [GeForce GT 610]
+	Kernel driver in use: nvidia
+	Kernel modules: nvidiafb, nvidia_drm, nvidia
+01:00.1 Audio device: NVIDIA Corporation GF119 HDMI Audio Controller (rev a1)
+	Subsystem: NVIDIA Corporation GF119 HDMI Audio Controller
+
+$ sudo cat /proc/driver/nvidia/version
+NVRM version: NVIDIA UNIX x86_64 Kernel Module  390.141  Mon Dec 28 16:21:32 UTC 2020
+GCC version:  gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) 
+
+#### 센트
+##### 참고 : https://m.blog.naver.com/PostView.nhn?blogId=khai01&logNo=221241774992&proxyReferer=https:%2F%2Fwww.google.com%2F
+## nouveau 모드 제거하려면 리빌드 후 reboot 해줘야함.
+$ dracut /boot/initramfs-3.10.0-1062.el7.x86_64.img 3.10.0-1062.el7.x86_64 --force
+$ shutdown -r now
+
+## nouveau 제거 확인
+$ lsmod |grep nouveau
+
+## 드라이브 설치를 위한 패키지 설치
+$ KERNEL_RELEASE=`uname -r | sed "s/.\`uname -m\`//g"`
+$ yum -y install kernel-devel-${KERNEL_RELEASE} kernel-headers-${KERNEL_RELEASE} gcc make dkms jq
+
+## 홈페이지에서 다운로드 
+chmod +x ./NVIDIA-Linux-x86_64-460.39.run
+
+./NVIDIA-Linux-x86_64-460.39.run 
+# DKMS 설명 : YES
+# 32bit 호환 : YES
+# Nvidia 사용여부 : YES
+
+# 확인
+$ lspci -k |grep -i nvidia
+#----------------
+17:00.0 VGA compatible controller: NVIDIA Corporation GP102 [GeForce GTX 1080 Ti] (rev a1)
+	Subsystem: NVIDIA Corporation Device 120f
+	Kernel driver in use: nvidia
+	Kernel modules: nouveau, nvidia_drm, nvidia
+17:00.1 Audio device: NVIDIA Corporation GP102 HDMI Audio Controller (rev a1)
+	Subsystem: NVIDIA Corporation Device 120f
+65:00.0 VGA compatible controller: NVIDIA Corporation GP102 [GeForce GTX 1080 Ti] (rev a1)
+	Subsystem: NVIDIA Corporation Device 120f
+	Kernel driver in use: nvidia
+	Kernel modules: nouveau, nvidia_drm, nvidia
+65:00.1 Audio device: NVIDIA Corporation GP102 HDMI Audio Controller (rev a1)
+	Subsystem: NVIDIA Corporation Device 120f
+b3:00.0 VGA compatible controller: NVIDIA Corporation GP102 [GeForce GTX 1080 Ti] (rev a1)
+	Subsystem: NVIDIA Corporation Device 120f
+	Kernel driver in use: nvidia
+	Kernel modules: nouveau, nvidia_drm, nvidia
+b3:00.1 Audio device: NVIDIA Corporation GP102 HDMI Audio Controller (rev a1)
+	Subsystem: NVIDIA Corporation Device 120f
+#----------------
+```
+
+## Node에 CUDA 설치
+```bash
+## 새로운 버전 설치
+$ wget https://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda_10.1.243_418.87.00_linux.run
+$ sudo sh cuda_10.1.243_418.87.00_linux.run
+ > accept
+ > 모두선택
+```
+
+## nvidia plugin pod 배포
+nvidia-device-plugin.yml
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gpu-pod
+spec:
+  containers:
+  - name: cuda-container
+    image: nvidia/cuda:10.0-base
+    resources:
+      limits:
+        nvidia.com/gpu: 1 # requesting 1 GPU
+```
+
+```bash
+$ kubectl apply -f nvidia-device-plugin.yml
+```
+
+## Jupyter에서 GPU Device 체크
+``` bash
+> from tensorflow.python.client import device_lib
+> print(device_lib.list_local_devices())
+
+
+>import os
+>os.environ['LD_LIBRARY_PATH'] = '/usr/local/cuda-11.2/lib64'
+>os.environ['PATH'] = '/home/jovyan/.local/bin:/opt/conda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/cuda-11.2/bin'
+
+
+>!echo $PATH
+/home/jovyan/.local/bin:/opt/conda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/cuda-11.2/bin
+>!echo $LD_LIBRARY_PATH
+/usr/local/cuda-11.2/lib64
+> !nvcc -V
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2020 NVIDIA Corporation
+Built on Mon_Nov_30_19:08:53_PST_2020
+Cuda compilation tools, release 11.2, V11.2.67
+Build cuda_11.2.r11.2/compiler.29373293_0
+```

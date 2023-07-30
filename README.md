@@ -17,7 +17,7 @@ IT 현업에서 일하면서 경험하고 공부한 내용들을 정리하려고
 [:clown_face: Argo 소개 및 구성 / 예제](./Argo/README.md)
 ## 6. kubeflow
 [:clown_face: Kubeflow 소개 및 구성 / 예제](./Kubeflow/README.md)
-## 7. Cuda (정리중..)
+## 7. Kudu (정리중..)
 ## 8. Ozone (정리중..)
 ## 9. AirFlow (정리중..)
 ## 10. Hadoop (정리중..)

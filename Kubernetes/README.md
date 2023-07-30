@@ -38,4 +38,4 @@ Kubernetes(쿠버네티스 혹은 줄여서 k8s라고도 부릅니다)는 Google
 <div id="contents3"></div>
 
 ## \# CUDA 구성
-[Cuda구성](./k8s%20v1.17/Issue%26Tip/)
+[Cuda구성](./k8s%20v1.17/Issue%26Tip/%5BTip%5D%20CUDA%20%EA%B5%AC%EC%84%B1.md)
