@@ -92,11 +92,11 @@ Kafka 브로커는 클러스터 내의 서버로 각 브로커는 하나 이상�
     ```
 2. **Zookeeper 설치** 
 
-    [:clown_face: zookeeper 설치](./Install/zookeeper.yaml)
+    [:clown_face: zookeeper 설치](./yaml/zookeeper.yaml)
 
 3. **Kafka 설치** 
 
-    [:clown_face: kafka 설치](./Install/kafka.yaml)
+    [:clown_face: kafka 설치](./yaml/kafka.yaml)
 
 4. **Topic 생성**
     ```bash
