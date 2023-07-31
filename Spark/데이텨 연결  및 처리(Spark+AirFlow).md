@@ -731,6 +731,7 @@ $ kubectl svc -n test
 
 ## 브라우저로 http://192.168.220.214:32410/home 접근
 ```
+
 ### **[구성 요소의 역할]**
 #### # DAG (Directed Acyclic Graph)
 - 비순환 그래프
@@ -751,8 +752,38 @@ $ kubectl svc -n test
 - Airflow에 있는 DAG, Task 등의 Metadata를 저장하고 관리
 
 
-### **[Spark 수행 방법]**
-```sh
+### **[Spark 수행 DAG 작성 방법]**
+```py
+from airflow import DAG
+from airflow.contrib.operators.spark_submit_operator import SparkSubmitOperator
+from datetime import datetime, timedelta
+
+# DAG 설정
+default_args = {
+    'owner': 'airflow',
+    'depends_on_past': False,
+    'start_date': datetime(2023, 7, 27),
+    'email': ['your-email@example.com'],
+    'email_on_failure': False,
+    'email_on_retry': False,
+    'retries': 1,
+    'retry_delay': timedelta(minutes=5),
+}
+
+dag = DAG(
+    'spark_submit_job', default_args=default_args,
+    schedule_interval=timedelta(days=1))
+
+# Spark 작업 실행 task
+submit_task = SparkSubmitOperator(
+    task_id='spark_submit',
+    conn_id='spark_default',
+    application='/path/to/your/sparkjob.py',
+    executor_memory='2g',
+    total_executor_cores=2,
+    dag=dag)
+
+
 ```
 
 ###
