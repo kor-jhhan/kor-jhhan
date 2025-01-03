@@ -6,7 +6,7 @@ AWS S3 > AWS Glue > Spark on AWS EMR <br>
  - AWS Glue : 분석, 기계 학습(ML) 및 애플리케이션 개발을 위해 여러 소스에서 데이터를 쉽게 탐색, 준비, 이동 및 통합할 수 있도록 하는 확장 가능한 서버리스 데이터 통합 서비스
  - AWS EMR :  Apache Spark, Apache Hive 및 Presto와 같은 오픈 소스 프레임워크를 사용하여 페타바이트급 데이터 처리, 대화식 분석 및 기계 학습을 위한 클라우드 빅 데이터 솔루션
 
-## **Spark on Kubernetes는 어떻게 다른가요?**
+## **Spark on Kubernetes는 어떻게 다른가?**
 ```
 일반적으로 YARN을 통해서 client모드로 Spark job을 실행시켜보면 master node에서 driver가 동작하고 worker node에서 executor들이 동작하게 됩니다. 물론 cluster모드라면 driver 또한 worker node어딘가에서 동작할테지요.
 
